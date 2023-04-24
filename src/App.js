@@ -5,6 +5,8 @@ import NavBar from "./Components/NavBar";
 import About from "./Components/About";
 import Home from "./Components/Home";
 import NoteState from "./Components/NoteState";
+import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
       <Routes>
         <Route  path="/" element={<NavBar />}>
         <Route index element={<Home />}/>
-        <Route path="AboutUs" element={<About />} />
+        <Route path="aboutUs" element={<About />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
  </Route>
       </Routes>
     </BrowserRouter>

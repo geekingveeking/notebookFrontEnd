@@ -1,10 +1,16 @@
 import React from 'react'
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink,Link, useNavigate } from "react-router-dom";
 
 export default function NavBar() {
+  const navigate=useNavigate("")
+  const handleLogout=()=>{
+    localStorage.removeItem('token');
+    navigate('/login');
+
+  }
   return (
     <>
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary ">
     <div className="container-fluid">
       <a className="navbar-brand" >inotebook</a>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,13 +24,17 @@ export default function NavBar() {
           <li className="nav-item">
           <NavLink  className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link inactive')} aria-current="page" to="/AboutUs">AboutUs</NavLink>
         </li>
-          
+        
+        
          
         </ul>
-        <form className="d-flex" role="search">
-          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button className="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <form className="d-flex" >
+          {!localStorage.getItem('token')?
+          <>
+           <Link to="/login"> <button type="button" className=" btn btn-primary btn-sm mx-2" >Login</button></Link>
+           <Link to="/signup"> <button type="button" className=" btn btn-primary btn-sm mx-1">Signup</button></Link>
+           </> :<button type="button" className=" btn btn-primary btn-sm mx-2" onClick={handleLogout} >Logout</button>}
+      </form>
       </div>
     </div>
   </nav>
